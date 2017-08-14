@@ -1,0 +1,17 @@
+{
+  "name": "jsonp-demo",
+  "version": "1.0.0",
+  "description": "a demo for describing how jsonp works",
+  "main": "index.js",
+  "author": "Zheng He <zhenghe@madadata.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev:start": "nodemon index.js"
+  },
+  "dependencies": {
+    "express": "^4.15.4"
+  },
+  "devDependencies": {
+    "nodemon": "^1.11.0"
+  }
+}

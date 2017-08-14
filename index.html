@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Jsonp Demo</title>
+  </head>
+  <body>
+    <script type="application/javascript">
+      var api = 'http://localhost:3000/api?cb=callback'
+
+      function callback(data) {
+        console.log(data)
+      }
+
+      function requestJsonp(url) {
+        var script = document.createElement('script')
+        script.src = url
+
+        script.onload = function() { this.remove() }
+
+        var body = document.getElementsByTagName('body')[0]
+        body.appendChild(script)
+      }
+
+      requestJsonp(api)
+    </script>
+  </body>
+</html>
