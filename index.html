@@ -5,18 +5,27 @@
     <title>Jsonp Demo</title>
   </head>
   <body>
+    <ul id="list"></ul>
     <script type="application/javascript">
       var api = 'http://localhost:3000/api?cb=callback'
 
       function callback(data) {
-        console.log(data)
+        var ul = document.getElementById('list')
+        for (fruit of data.fruits) {
+          li = document.createElement('li')
+          li.innerText = fruit
+          ul.appendChild(li)
+        }
       }
 
       function requestJsonp(url) {
         var script = document.createElement('script')
         script.src = url
 
-        script.onload = function() { this.remove() }
+        // remove this script when it is loaded and executed
+        script.onload = function() {
+          this.remove()
+        }
 
         var body = document.getElementsByTagName('body')[0]
         body.appendChild(script)

@@ -3,7 +3,7 @@ const app = express()
 const fs = require('fs')
 
 app.get('/api', (req, res) => {
-  res.send(`${req.query.cb}({ data: 'fake data' })`)
+  res.send(`${req.query.cb}({ fruits: ['apple', 'banana', 'orange'] })`)
 })
 
 app.listen(3000, '127.0.0.1', () => {
