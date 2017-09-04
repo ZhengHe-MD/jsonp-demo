@@ -1,11 +1,22 @@
-const express = require('express')
-const app = express()
-const fs = require('fs')
+const http = require('http')
+const url = require('url')
+const qs = require('querystring')
 
-app.get('/api', (req, res) => {
-  res.send(`${req.query.cb}({ fruits: ['apple', 'banana', 'orange'] })`)
+const server = http.createServer((req, res) => {
+  const parsedUrl = url.parse(req.url)
+  const pathname = parsedUrl.pathname
+  const parsedQuery = qs.parse(parsedUrl.query)
+  if (pathname === '/api') {
+    const data = { fruits: ['apple', 'banana', 'orange'] }
+    res.statusCode = 200
+    res.setHeader('Content-Type', 'application/javascript')
+    res.end(`${parsedQuery.cb}(${JSON.stringify(data)})`)
+  } else {
+    res.statusCode = 404
+    res.end('page not found')
+  }
 })
 
-app.listen(3000, '127.0.0.1', () => {
-  console.log('Jsonp Demo listening on port 3000')
+server.listen('3000', 'localhost', () => {
+  console.log('JSONP demo server running at port 3000')
 })

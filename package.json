@@ -8,9 +8,6 @@
   "scripts": {
     "dev:start": "nodemon index.js"
   },
-  "dependencies": {
-    "express": "^4.15.4"
-  },
   "devDependencies": {
     "nodemon": "^1.11.0"
   }
